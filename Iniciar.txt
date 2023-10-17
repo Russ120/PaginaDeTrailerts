@@ -1,0 +1,7 @@
+En la consola o terminar escribir:
+npm run dev
+
+se correrá en el puerto 1313
+
+Base de datos no relacional (MongoDB) necesario tener el servidor activo y crear una tabla o conjunto llamado "peliculas".
+

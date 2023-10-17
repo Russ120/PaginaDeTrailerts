@@ -1,0 +1,172 @@
+
+<head>
+    <title>Portal de Trailers</title>
+    <link rel="stylesheet" href="/css/estiloPortalTrailers.css">
+    <style>
+        /* Estilos globales */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("https://e0.pxfuel.com/wallpapers/55/23/desktop-wallpaper-home-theater-for-cinema.jpg");
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            background-attachment: fixed;
+
+            color: white;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Estilos para la sección de administrador */
+        .admin-section {
+            border-radius: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background-color: #000;
+        }
+
+        .admin-section select {
+            width: 300px;
+            margin-right: 20px;
+        }
+
+        .btn btn-sm btn-outline-secondary {}
+
+        .admin-section button {
+            background-color: #333;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .admin-section button:hover {
+            background-color: #555;
+        }
+
+        /* Estilos para las tarjetas de películas */
+        .movie-card {
+            background-color: #111;
+            border-radius: 8px;
+            margin: 20px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .movie-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .movie-card img {
+            width: 400px;
+            max-width: 100%;
+
+            min-height: 200px;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .movie-card h3 {
+            margin-top: 10px;
+            font-size: 24px;
+        }
+        .movie-card .btn-group {
+            margin-top: 20px;
+        }
+        .btn-ver {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+{{#isAdmin user}}
+<body>
+    <div class="admin-section">
+        <form action="/trailers/add">
+            <button type="submit">Nuevo</button>
+        </form>
+        <form action="/trailers/search" method="GET">
+            <select name="Categoria">
+                <option value="">Buscar por categoría</option>
+                <option value="Accion">Acción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Terror">Terror</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                <option value="Drama">Drama</option>
+                <option value="Romance">Romance</option>
+                <option value="Fantasia">Fantasia</option>
+                <!-- Opciones de categorías aquí -->
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <div class="row">
+        {{#each trailers}}
+        <div class="col-lg-4">
+            <div class="movie-card">
+                <form method="GET" action="/infoTrailers/{{_id}}">
+                    <img src="{{ImgUrl}}" alt="{{Titulo}}">
+                    <button class="btn btn-secondary btn-sm btn-ver" type="submit">Ver Trailer</button>
+                </form>
+                <h3>{{Titulo}}</h3>
+                <div class="btn-group">
+                    <form action="/trailers/edit/{{_id}}" method="GET">
+                        <button class="btn btn-sm btn-outline-secondary" type="submit">Editar</button>
+                    </form>
+                    <form method="POST" action="/trailers/delete/{{_id}}?_method=DELETE">
+                        <input type="hidden" name="_method" value="DELETE">
+                        <button class="btn btn-sm btn-outline-secondary" type="submit">Eliminar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</body>
+{{else}}
+    <div class="admin-section">
+        <form action="/trailers/add">
+        </form>
+        <form action="/trailers/search" method="GET">
+            <select name="Categoria">
+                <option value="">Buscar por categoría</option>
+                <option value="Accion">Acción</option>
+                <option value="Comedia">Comedia</option>
+                <option value="Terror">Terror</option>
+                <option value="Aventura">Aventura</option>
+                <option value="Ciencia Ficción">Ciencia Ficción</option>
+                <option value="Drama">Drama</option>
+                <option value="Romance">Romance</option>
+                <option value="Fantasia">Fantasia</option>
+                <!-- Opciones de categorías aquí -->
+            </select>
+            <button type="submit">Buscar</button>
+        </form>
+    </div>
+    <div class="row">
+        {{#each trailers}}
+        <div class="col-lg-4">
+            <div class="movie-card">
+                <form method="GET" action="/infoTrailers/{{_id}}">
+                    <img src="{{ImgUrl}}" alt="{{Titulo}}">
+                    <button class="btn btn-secondary btn-sm btn-ver" type="submit">Ver Trailer</button>
+                </form>
+                <h3>{{Titulo}}</h3>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</body>
+{{/isAdmin}}
+
+</html>

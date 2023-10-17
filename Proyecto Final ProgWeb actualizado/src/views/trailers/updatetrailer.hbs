@@ -1,0 +1,60 @@
+<h1>Editando: {{Titulo}}</h1>
+<form method="POST" action="/trailers/edit/{{_id}}?_method=PUT">
+    <input type="hidden" name="_method" value="PUT">
+    <div class="mb-3">
+        <label for="title" class="form-label">Titulo</label>
+        <input type="text" class="form-control" id="title" name="Titulo" value="{{Titulo}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Año</label>
+        <input type="number" class="form-control" id="Año" name="Año" value="{{Año}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Director</label>
+        <input type="text" class="form-control" id="Director" name="Director" value="{{Director}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Actores</label>
+        <input type="text" class="form-control" id="Actores" name="Actores" value="{{Actores}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+    <div class="mb-3">
+        <label for="description" class="form-label">Reseña</label>
+        <textarea class="form-control" id="description" name="Reseña" rows="5">{{Reseña}}</textarea>
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">ImgUrl</label>
+        <input type="text" class="form-control" id="ImgUrl" name="ImgUrl" value="{{ImgUrl}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">LinkVideo</label>
+        <input type="text" class="form-control" id="LinkVideo" name="LinkVideo" value="{{LinkVideo}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">Categoria</label>
+        <select id="Categoria" class="form-select" name="Categoria">
+            <option value="{{Categoria}}" selected="">{{#if Categoria}}{{Categoria}}{{else}}Seleccione un genero{{/if}}
+            </option>
+            <option value="Accion">Accion</option>
+            <option value="Comedia">Comedia</option>
+            <option value="Terror">Terror</option>
+            <option value="Aventura">Aventura</option>
+            <option value="Ciencia Ficción">Ciencia Ficción</option>
+            <option value="Drama">Drama</option>
+            <option value="Romance">Romance</option>
+            <option value="Fantasia">Fantasia</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="title" class="form-label">User</label>
+        <input type="text" class="form-control" id="User" name="User" value="{{User}}" />
+        {{!-- value=" {{#if editMode}}{{movie.title}}{{/if}} " /> --}}
+    </div>
+
+    <button type="submit" class="btn btn-success btn-block mt-1">Guardar</button>
+</form>

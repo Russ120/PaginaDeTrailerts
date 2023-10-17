@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark p-2 bg-black">
+    <div class="container">
+        <a class="navbar-brand" href="/">MovieTrailers</a>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" aria-current="page" href="/trailers">Trailers</a>
+                </li>
+            </ul>
+            {{#if user}}
+            <ul class="navbar-nav ms-auto">
+                <img style="max-height: 28px; border-radius:50%; margin:auto" src="{{user.ImgUrl}}">
+                <li class="nav-item">
+                    
+                    <a class="nav-link">{{user.Usuario}}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="/users/logout" class="nav-link"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRIG9PKnDZVdoTLIJyuxty_T4T_YY4up6-iIg&usqp=CAU" style="max-width:25px"></a>
+                </li>
+            </ul>
+            {{else}}
+
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a href="/users/login" class="nav-link">Iniciar Sesion</a>
+                </li>
+            </ul>
+            {{/if}}
+        </div>
+
+    </div>
+</nav>
